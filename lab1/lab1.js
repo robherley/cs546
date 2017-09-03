@@ -47,9 +47,8 @@ const sayHelloTo = (...args) => {
         `Hello, ${args[0]} ${args[1]}. I hope you are having a good day!`,
         `Hello, ${args[2]} ${args[0]} ${args[1]}! Have a good evening!`
     ];
-    return responses[args.length - 1];
+    console.log(responses[args.length - 1]);
 };
-
 
 /**
  * Returns a string of a song (99 Cups of Coffee on the Desk)
