@@ -6,5 +6,5 @@ if(lab.slice(0,3) !== 'lab'){
 }
 else {
     shell.cd(`./${lab}`)
-    shell.exec(`zip -r Herley_Robert-${lab}.zip . -x "*node_modules/" -x "node_modules/**" -x "*.DS_Store"`)
+    shell.exec(`zip -r HerleyRobert-${lab}.zip . -x "*node_modules/" -x "node_modules/**" -x "*.DS_Store"`)
 }

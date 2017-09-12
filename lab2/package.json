@@ -1,0 +1,12 @@
+{
+	"name": "cs-546-lab2",
+	"version": "1.0.0",
+	"description": "CS-546 lab2 Submission for Robert Herley",
+	"main": "lab2.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Rob Herley",
+	"license": "ISC"
+}

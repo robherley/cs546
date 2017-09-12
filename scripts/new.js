@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const lab = process.argv.slice(-1)[0]
 
 const package = {
-  "name": `${lab}`,
+  "name": `cs-546-${lab}`,
   "version": "1.0.0",
   "description": `CS-546 ${lab} Submission for Robert Herley`,
   "main": `${lab}.js`,
