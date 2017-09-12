@@ -11,7 +11,7 @@
  * @param  {number} lines height of the triangle
  * 
  * @throws TypeError if the argument is not an integer greater than 0.
- * @return nothing!
+ * @return A pretty triangle
  * 
  */
 const triangle = lines => {
@@ -36,7 +36,7 @@ const triangle = lines => {
  * @param  {number} lines height of the square
  * 
  * @throws TypeError if the argument is not an integer greater than 2.
- * @return nothing!
+ * @return A pretty square
  * 
  */
 const square = lines => {
@@ -64,7 +64,7 @@ const square = lines => {
  * @param  {number} lines height of the rhombus
  * 
  * @throws TypeError if the argument is not an even integer greater than 2.
- * @return nothing!
+ * @return A pretty rhombus
  * 
  */
 const rhombus = lines => {
