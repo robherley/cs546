@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const lab = process.argv.slice(-1)[0]
 
 const package = {
-  "name": `cs-546-${lab}`,
+  "name": `cs-546-lab-${lab.split('b')[1]}`,
   "version": "1.0.0",
   "description": `CS-546 ${lab} Submission for Robert Herley`,
   "main": `${lab}.js`,
@@ -11,7 +11,7 @@ const package = {
   },
   "keywords": [],
   "author": "Rob Herley",
-  "license": "ISC"
+  "license": "MIT"
 }
 
 const heading = `
