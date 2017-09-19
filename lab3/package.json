@@ -1,0 +1,15 @@
+{
+	"name": "cs-546-lab-3",
+	"version": "1.0.0",
+	"description": "CS-546 lab3 Submission for Robert Herley",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"keywords": [],
+	"author": "Rob Herley",
+	"license": "MIT",
+	"dependencies": {
+		"fs-extra": "^4.0.2"
+	}
+}
