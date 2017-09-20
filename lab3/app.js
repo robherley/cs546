@@ -4,26 +4,47 @@
  * I pledge my honor that I abided by the Stevens Honor System.
  */
 
-const { 
-    getFileAsString, 
-    getFileAsJSON, 
-    saveStringToFile,
-    saveJSONToFile 
+// Imports
+const fse = require('fs-extra');
+const {
+	getFileAsString,
+	getFileAsJSON,
+	saveStringToFile,
+	saveJSONToFile
 } = require('./filedata');
-const { simplifyText } = require('./textMetrics')
+const { createMetrics, simplifyText } = require('./textMetrics');
 
-getFileAsString('chapter1.txt')
-.then(res => console.log(res))
-.catch(err => console.error(err))
+// Array of files to collect info on
+const FILE_LIST = ['chapter1.txt', 'chapter2.txt', 'chapter3.txt'];
 
-// getFileAsJSON('package.json')
-// .then(res => console.log(res))
-// .catch(err => console.error(err))
+/**
+* 1. Check if a corresponding result file already exists for this file, if so 
+* query and print the result already stored.
+* 2. If no result file is found, get the contents of the file using 
+* getFileAsString
+* 3. Simplify the text, and store that text in a file named fileName.debug.txt
+* 4. Run the text metrics, and store those metrics in fileName.result.json
+* 5. Print the resulting metrics
+* @async
+*/
+const runAllMetrics = async () => {
+	for (file in FILE_LIST) {
+		try {
+			const orgFile = FILE_LIST[file];
+			const jsonFile = orgFile.replace('.txt', '.result.json');
+			if (!await fse.pathExists(jsonFile)) {
+				const debugFile = orgFile.replace('.txt', '.debug.txt');
+				const sim = await simplifyText(await getFileAsString(orgFile));
+				await saveStringToFile(debugFile, sim);
+				await saveJSONToFile(jsonFile, createMetrics(sim));
+			}
+			return await getFileAsString(jsonFile);
+		} catch (err) {
+			throw err;
+		}
+	}
+};
 
-// saveStringToFile('test.json', "Hello, Friend. 2")
-//     .then(res => console.log(res))
-//     .catch(err => console.log(err))
-
-// saveJSONToFile('test.json', {saying:"hello, friend"})
-//     .then(res => console.log(res))
-//     .catch(err => console.log(err))
+runAllMetrics()
+	.then(res => console.log(res))
+	.catch(err => console.error(err));
