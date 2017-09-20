@@ -4,7 +4,8 @@
 	"description": "CS-546 lab3 Submission for Robert Herley",
 	"main": "app.js",
 	"scripts": {
-		"start": "node app.js"
+		"start": "node app.js",
+		"clean": "node cleanup.js"
 	},
 	"keywords": [],
 	"author": "Rob Herley",

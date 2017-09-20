@@ -14,8 +14,24 @@ const {
 } = require('./filedata');
 const { createMetrics, simplifyText } = require('./textMetrics');
 
-// Array of files to collect info on
-const FILE_LIST = ['chapter1.txt', 'chapter2.txt', 'chapter3.txt'];
+/**
+ * Looks at current directory, returns a list of all the chapter txt files,
+ * may break, will just return the standard chapter files if it does...
+ * @async
+ */
+const getChapterFiles = async () => {
+	try {
+		return await fse.readdir('.').filter(file => {
+			// Find all chapter files
+			if (file.match(/chapter\d*.txt/g)) {
+				return file;
+			}
+		});
+	} catch (err) {
+		console.error('Something went wrong:', err);
+		return ['chapter1.txt', 'chapter2.txt', 'chapter3.txt'];
+	}
+};
 
 /**
 * 1. Check if a corresponding result file already exists for this file, if so 
@@ -28,8 +44,9 @@ const FILE_LIST = ['chapter1.txt', 'chapter2.txt', 'chapter3.txt'];
 * @async
 */
 const runAllMetrics = async () => {
-	for (file in FILE_LIST) {
-		try {
+	try {
+		const FILE_LIST = await getChapterFiles();
+		for (file in FILE_LIST) {
 			const orgFile = FILE_LIST[file];
 			const jsonFile = orgFile.replace('.txt', '.result.json');
 			if (!await fse.pathExists(jsonFile)) {
@@ -38,13 +55,11 @@ const runAllMetrics = async () => {
 				await saveStringToFile(debugFile, sim);
 				await saveJSONToFile(jsonFile, createMetrics(sim));
 			}
-			return await getFileAsString(jsonFile);
-		} catch (err) {
-			throw err;
+			console.log(await getFileAsString(jsonFile));
 		}
+	} catch (err) {
+		throw err;
 	}
 };
 
-runAllMetrics()
-	.then(res => console.log(res))
-	.catch(err => console.error(err));
+runAllMetrics().catch(err => console.error(err));
