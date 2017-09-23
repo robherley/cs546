@@ -10,7 +10,7 @@
  *
  * @param  {string} text string to cleanse
  */
-const simplifyText = text => {
+const simplify = text => {
 	if (typeof text !== 'string')
 		throw TypeError(`${text} is not a valid string!`);
 	return text
@@ -25,7 +25,7 @@ const simplifyText = text => {
  * @param  {string} text string to simplify & collect metrics
  */
 const createMetrics = text => {
-	const simple = simplifyText(text);
+	const simple = simplify(text);
 	const wList = simple.split(' ');
 	const wordOccurences = wList.reduce((obj, curr) => {
 		obj[curr] = (obj[curr] || 0) + 1;
@@ -36,7 +36,7 @@ const createMetrics = text => {
 		0
 	);
 	return {
-		totalLetters: simple.length,
+		totalLetters: simple.replace(/\s/g, '').length,
 		totalWords: wList.length,
 		uniqueWords: Object.keys(wordOccurences).length,
 		longWords: wList.filter(w => w.length >= 6).length,
@@ -46,6 +46,6 @@ const createMetrics = text => {
 };
 
 module.exports = {
-	simplifyText,
+	simplify,
 	createMetrics
 };

@@ -12,7 +12,7 @@ const {
 	saveStringToFile,
 	saveJSONToFile
 } = require('./filedata');
-const { createMetrics, simplifyText } = require('./textMetrics');
+const { createMetrics, simplify } = require('./textMetrics');
 
 /**
  * Looks at current directory, returns a list of all the chapter txt files,
@@ -21,14 +21,16 @@ const { createMetrics, simplifyText } = require('./textMetrics');
  */
 const getChapterFiles = async () => {
 	try {
-		return await fse.readdir('.').filter(file => {
+		const fileList = await fse.readdir('.');
+		return fileList.filter(file => {
 			// Find all chapter files
 			if (file.match(/chapter\d*.txt/g)) {
 				return file;
 			}
 		});
 	} catch (err) {
-		console.error('Something went wrong:', err);
+		console.error(err);
+		console.error('Something went wrong, continuing with default files...');
 		return ['chapter1.txt', 'chapter2.txt', 'chapter3.txt'];
 	}
 };
@@ -49,9 +51,10 @@ const runAllMetrics = async () => {
 		for (file in FILE_LIST) {
 			const orgFile = FILE_LIST[file];
 			const jsonFile = orgFile.replace('.txt', '.result.json');
+			// Only run if the json file doesn't exist
 			if (!await fse.pathExists(jsonFile)) {
 				const debugFile = orgFile.replace('.txt', '.debug.txt');
-				const sim = await simplifyText(await getFileAsString(orgFile));
+				const sim = simplify(await getFileAsString(orgFile));
 				await saveStringToFile(debugFile, sim);
 				await saveJSONToFile(jsonFile, createMetrics(sim));
 			}
@@ -62,4 +65,5 @@ const runAllMetrics = async () => {
 	}
 };
 
+// Any catches will bubble up to here
 runAllMetrics().catch(err => console.error(err));

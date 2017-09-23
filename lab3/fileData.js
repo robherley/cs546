@@ -35,7 +35,7 @@ const getFileAsJSON = async path => {
 			throw TypeError(`${path} is not a valid string!`);
 		return await fse.readJSON(path);
 	} catch (err) {
-		return err;
+		throw err;
 	}
 };
 
@@ -53,7 +53,7 @@ const saveStringToFile = async (path, text) => {
 		const STRINGFILE = await fse.writeFile(path, text);
 		return true;
 	} catch (err) {
-		return err;
+		throw err;
 	}
 };
 
@@ -73,7 +73,7 @@ const saveJSONToFile = async (path, obj) => {
 		const JSONFILE = await fse.writeJSON(path, obj, { spaces: '\t' });
 		return true;
 	} catch (err) {
-		return err;
+		throw err;
 	}
 };
 
