@@ -1,0 +1,16 @@
+{
+	"name": "cs-546-lab-4",
+	"version": "1.0.0",
+	"description": "CS-546 lab4 Submission for Robert Herley",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"keywords": [],
+	"author": "Rob Herley",
+	"license": "MIT",
+	"dependencies": {
+		"mongodb": "^2.2.31",
+		"uuid": "^3.1.0"
+	}
+}
