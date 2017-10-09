@@ -1,0 +1,18 @@
+{
+	"name": "cs-546-lab-6",
+	"version": "1.0.0",
+	"description": "CS-546 lab6 Submission for Robert Herley",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"test": "node test.js"
+	},
+	"keywords": [],
+	"author": "Rob Herley",
+	"license": "MIT",
+	"dependencies": {
+		"axios": "^0.16.2",
+		"express": "^4.16.1",
+		"morgan": "^1.9.0"
+	}
+}
