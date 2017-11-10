@@ -138,13 +138,13 @@ a:hover {
 }
 
 .is-palindrome {
-	border-left: 20px solid #0074d9;
-	color: #0074d9;
+	border-left: 20px solid #006ece;
+	color: #006ece;
 }
 
 .not-palindrome {
-	border-left: 20px solid #ce4257;
-	color: #ce4257;
+	border-left: 20px solid #cb334d;
+	color: #cb334d;
 }
 
 .form {
@@ -155,6 +155,10 @@ a:hover {
 
 .hidden {
 	visibility: hidden;
+}
+
+.none {
+	display: none;
 }
 
 .form textarea {
