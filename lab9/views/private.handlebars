@@ -1,0 +1,23 @@
+<div class="row">
+    <h1 class="display-4">Hello, {{user.firstName}} {{user.lastName}}</h1>
+</div>
+<div class="content">
+    <h2>Here's some info about you:</h2>
+    <dl class="row">
+        <dt class="col-sm-3">Username</dt>
+        <dd class="col-sm-9">{{user.username}}</dd>
+
+        <dt class="col-sm-3">First Name</dt>
+        <dd class="col-sm-9">{{user.firstName}}</dd>
+
+        <dt class="col-sm-3">Last Name</dt>
+        <dd class="col-sm-9">{{user.lastName}}</dd>
+
+        <dt class="col-sm-3">Profession</dt>
+        <dd class="col-sm-9">{{user.profession}}</dd>
+
+        <dt class="col-sm-3">Bio</dt>
+        <dd class="col-sm-9">{{user.bio}}</dd>
+    </dl>
+    <a class="btn btn-default centered" href="/logout">Log Out</a>
+</div>
